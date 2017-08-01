@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-28 16:05:47 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.job.job" table="JOB">
+        <id name="job_id" type="int">
+            <column name="JOB_ID" />
+            <generator class="native" />
+        </id>
+        <property name="job_name" type="java.lang.String">
+            <column name="JOB_NAME" />
+        </property>
+        <property name="job_type" type="java.lang.String">
+            <column name="JOB_TYPE" />
+        </property>
+        <property name="job_strategy" type="java.lang.String">
+            <column name="JOB_STRATEGY" />
+        </property>
+        <property name="job_priority" type="java.lang.String">
+            <column name="JOB_PRIORITY" />
+        </property>
+        <property name="job_status" type="java.lang.String">
+            <column name="JOB_STATUS" />
+        </property>
+        <property name="attempts" type="java.lang.String">
+            <column name="ATTEMPTS" />
+        </property>
+        <many-to-one name="u" class="com.user.user" fetch="join">
+           <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="p" class="com.problem.problem" cascade="save-update">
+           <column name="problem_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

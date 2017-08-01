@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"/> -->
+    <package name="main"  extends="struts-default">
+        <action name="Main_*" class="com.red.action.MainAction" method="{1}">
+            <result name="login_success" type="chain">Main_showProblem</result>
+            <result name="show_success">/Pages/MainPage.jsp</result>
+            <result name="login_error">/Pages/Login.jsp</result>
+            <result name="add_success" type="chain">Main_showProblem</result>
+            <result name="delete_success" type="chain">Main_showProblem</result>
+            <result name="update_success" type="chain">Main_showProblem</result>
+            <result name="showProblemById_success">/Database/showProblemById.jsp</result>
+            <result name="queryProblemById_success">/Database/queryProblemById.jsp</result>
+            <result name="addJob_success">MyJob.jsp</result>
+            <allowed-methods>userLogin, showProblem, addProblem, deleteProblem, 
+            		showProblemById, queryProblemById, updateProblem, 
+            		addJob</allowed-methods>
+        </action>
+    </package>
+    
+    <package name="problems"  extends="struts-default"> 
+        <action name="Problems_*" class="com.red.action.ProblemAction" method="{1}">
+            <result name="login_success">/Pages/MainPage.jsp</result>
+            
+            <allowed-methods>adminLogin, </allowed-methods>
+        </action>
+    </package>
+    
+    <package name="users" extends="struts-default">
+		<action name="Users_*" class="com.red.action.AdminAction"
+			method="{1}">
+			<result name="query_success">/Database/user_list.jsp</result>
+			<result name="delete_success" type="chain">Users_showAllUser</result>
+			<result name="add_success" type="chain">Users_showAllUser</result>
+			<result name="update_success" type="chain">Users_showAllUser</result>
+			<result name="queryUserById_success">/Database/showUserById.jsp</result>
+			<result name="error">/Pages/Login.jsp</result>
+			<allowed-methods>addUser, showAllUser, deleteUser, updateUser, queryUserById</allowed-methods>
+		</action>
+	</package>
+	
+	<package name="admins" extends="struts-default">
+		<action name="Admins_*" class="com.red.action.AdminAction"
+			method="{1}">
+			<result name="register_success">/Admin/AdminLogin.jsp</result>
+			<result name="login_success" type="chain">Admins_showAdminPage</result>
+			<result name="showAdminPage_success">/Admin/AdminPage.jsp</result>
+			<result name="showOwnInfo_success">/Admin/Personal/OwnInfo.jsp</result>
+			<result name="queryOwnAdmin_success">/Admin/Personal/EditOwnInfo.jsp</result>
+			<result name="updateOwnAdmin_success" type="chain">Admins_showOwnInfo</result>
+			<result name="deleteOwnAdmin_success">/Admin/AdminLogin.jsp</result>
+			
+			
+			<result name="queryUser_success">/Admin/Users/ManageUser.jsp</result>
+			<result name="queryUserById_success">/Admin/Users/showUserById.jsp</result>
+			<result name="updateUser_success" type="chain">Admins_showAllUser</result>
+	
+			<result name="queryProblem_success">/Admin/ManageProblem.jsp</result>
+					
+			
+			<result name="deleteUser_success" type="chain">Admins_showAllUser</result>
+			<allowed-methods>adminRegister, adminLogin, showAdminPage, showOwnInfo, queryOwnAdmin, updateOwnAdmin, deleteOwnAdmin, 
+					showAllUser, showAllProblem, queryUserById, updateUser, deleteUser
+			</allowed-methods>
+		</action>
+	</package>
+	
+	<package name="select" extends="struts-default">
+		<action name="Select_*" class="com.red.action.SelectAction" method="{1}">
+			<result name="problem_success">/Pages/CreateNewJob.jsp</result>
+			<allowed-methods>selectProblem</allowed-methods>
+		</action>
+	</package>    
+</struts>

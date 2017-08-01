@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-28 15:43:16 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.user.user" table="USER">
+        <id name="user_id" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="user_name" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="user_password" type="java.lang.String">
+            <column name="USER_PASSWORD" />
+        </property>
+        <set name="problems" table="ProblemOwner" cascade="save-update" inverse="false" lazy="false">
+            <key>
+                <column name="user_id" />
+            </key>
+            <many-to-many class="com.problem.problem" column="problem_id"/>
+        </set>
+        <set name="jobs" table="JOB" inverse="true" lazy="false" cascade="save-update">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.job.job" />
+        </set>
+    </class>
+</hibernate-mapping>

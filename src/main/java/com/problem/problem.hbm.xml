@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-28 15:43:16 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.problem.problem" table="PROBLEM">
+        <id name="problem_id" type="int">
+            <column name="PROBLEM_ID" />
+            <generator class="native" />
+        </id>
+        <property name="problem_name" type="java.lang.String">
+            <column name="PROBLEM_NAME" />
+        </property>
+        <property name="problem_content" type="java.lang.String">
+            <column name="PROBLEM_CONTENT" />
+        </property>
+        <property name="problem_labels" type="java.lang.String">
+            <column name="PROBLEM_LABELS" />
+        </property>
+        <set name="users" table="ProblemOwner" cascade="save-update" inverse="true" lazy="false">
+            <key>
+                <column name="problem_id" />
+            </key>
+            <many-to-many class="com.user.user" column="user_id"/>
+        </set>
+    </class>
+</hibernate-mapping>
